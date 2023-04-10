@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="./main.js"></script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,30 +10,10 @@
 </head>
 <body>
     <h1>Cliente 1</h1>
-    <input type="text" id="texto">
-    <button onclick="sendMessage()">Enviar mensaje</button>
-    <input type="text" id="respuesta" disabled>
-
-
-    <script>
-        const socket = new WebSocket('ws://localhost:3000');
-
-// Abre la conexión
-socket.addEventListener('open', function (event) {
-    socket.send('Conectado');
-});
-
-// Escucha por mensajes
-socket.addEventListener('message', function (event) {
-    console.log('Message from server', event.data);
-    document.getElementById('respuesta').value=event.data;
-
-});
-
-const sendMessage = () => {
-    socket.send(document.getElementById('texto').value)
-    document.getElementById('texto').value = '';
-}
-    </script>
+    <div id="messages"></div>
+    <div class="text-container">
+        <input type="text" id="texto" placeholder="Mensaje">
+        <button onclick="sendMessage()">Enviar</button>
+    </div>
 </body>
 </html>

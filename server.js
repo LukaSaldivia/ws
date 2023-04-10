@@ -11,7 +11,6 @@ const wss = new WebSocketServer({ server:server });
 
 wss.on('connection', function connection(ws) {
     console.log('New client')
-    ws.send('Bienvenido')
   ws.on('message', function message(data,isBinary) {
     console.log('Recibido: %s', data);
     wss.clients.forEach(function each(client) {
@@ -20,8 +19,6 @@ wss.on('connection', function connection(ws) {
       }
     });
   });
-
-  ws.send('something');
 });
 
 app.get('/', (req,res) => res.send('Estp es un servidor'))
